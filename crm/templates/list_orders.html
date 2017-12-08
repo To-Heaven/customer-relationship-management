@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>会议室预定</h1>
+    <hr>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>会议室</th>
+            <th>8:00</th>
+            <th>9:00</th>
+            <th>10:00</th>
+            <th>11:00</th>
+            <th>12:00</th>
+            <th>13:00</th>
+            <th>14:00</th>
+            <th>15:00</th>
+            <th>16:00</th>
+            <th>17:00</th>
+            <th>18:00</th>
+            <th>19:00</th>
+            <th>20:00</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.title }}</td>
+                    {% for period in period_list %}
+                        {% for item in order_list %}
+                            {% if room == item.1 %}
+                                {% if item.0.period == period.0 %}
+                                    <td>{{ item.0.user.username }}</td>
+                                {% endif %}
+                             {% endif %}
+                        {% endfor %}
+                        <td></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,49 @@
+.hides{
+    display: none;
+}
+
+
+
+.inline_choice{
+    margin-left: -21px;
+}
+
+.question_index{
+    font-weight: bold;
+    font-size: 20px;
+    color: #3d4444;
+    margin-left: -50px;
+}
+
+.question_header{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.question{
+    margin-left: 50px;
+}
+
+.question_header span{
+    display: inline-block;
+    margin-top: 5px;
+}
+        .hide{
+            display: none;
+        }
+        ol {
+            padding: 0;
+            list-style: none;
+            counter-reset: sectioncounter
+        }
+
+        ol > li:before {
+            content: '问题' counter(sectioncounter) ':';
+            counter-increment: sectioncounter;
+            font-size: 18px;
+            color: #d4d4d4;
+        }
+
+        ol > li:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }

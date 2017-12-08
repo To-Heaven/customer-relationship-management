@@ -1,0 +1,79 @@
+{% extends 'list_questionnaire.html' %}
+
+{% block content %}
+    <h2>编辑问卷</h2>
+    <input type="hidden" value="{% url 'manage_questionnaire' questionnaire_id=questionnaire_id %}">
+    {% csrf_token %}
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="add_question" class="btn pull-right btn-success">添加</button>
+
+            <button id="submit_question" class="btn pull-right btn-primary">提交</button>
+        </div>
+
+        <div class="question_area" class="col-md-12">
+
+            <ol>
+                {% for question in question_list %}
+                <li >
+                    <div class="per_question" question_id="{{ question.question.id }}">
+                       <span class="glyphicon glyphicon-remove pull-right delete_choice" aria-hidden="true"></span>
+                        <div class="col-md-12">
+                            <div class="col-md-1">
+                                问题内容:&nbsp;
+                            </div>
+                            <div class="col-md-10">
+                                {{ question.form.content }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-1">
+                                问题类型:&nbsp;
+                            </div>
+                            <div class="col-md-3">
+                               {{ question.form.question_type }}
+                            </div>
+                            <div class="col-md-1 {{ question.option_class }}">
+                                <button class="btn btn-default add_option">+添加选项</button>
+                            </div>
+                            <ul class="choice_list list-unstyled">
+                                {% for choice in question.options %}
+                                    <li>
+                                        <div choice_id="{{ choice.choice.id }}" class="per_choice">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                        选项:
+                                                    </div>
+                                                     <div class="col-md-8">
+                                                         {{ choice.form.title }}
+                                                     </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                         分值:
+                                                    </div>
+                                                     <div class="col-md-8">
+                                                         {{ choice.form.score }}
+                                                     </div>
+                                                </div>
+                                                <div class="col-md-2 text-center">
+                                                    <span class="glyphicon glyphicon-remove delete_choice" aria-hidden="true"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endblock %}

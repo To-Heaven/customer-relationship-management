@@ -1,0 +1,31 @@
+{% extends 'list_questionnaire.html' %}
+
+{% block content %}
+    <h2>新增问卷</h2>
+    <hr>
+    <div class="row">
+    {% csrf_token %}
+        <div class="form-group">
+            <label class="control-label" for="id_title">问卷标题</label>
+            {{ form.title }}
+            <span id="title" class="help-block"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="id_description">问卷描述</label>
+            {{ form.description }}
+            <span id="description" class="help-block"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="id_department">参与问卷部门</label>
+            <select name="select" id="id_department" class="form-control" multiple>
+                {% for department in departments %}
+                    <option value="{{ department.id }}">{{ department.department_name }}</option>
+                {% endfor %}
+            </select>
+            <span id="department" class="help-block"></span>
+        </div>
+    <div class="col-md-12 text-center">
+            <button id="add_questionnaire" class="btn btn-success">添加</button>
+    </div>
+    </div>
+{% endblock %}
